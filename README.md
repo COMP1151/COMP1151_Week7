@@ -1,4 +1,4 @@
-# Week 6 -- State Machines --
+# Week 7 -- State Machines --
 
 Learning outcomes:
 
