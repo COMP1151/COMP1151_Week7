@@ -148,10 +148,11 @@ As mentioned before, this time we're simply leaving our `Dormant` state empty. I
 
 Consider our problem:
 
-```text
-We want to check (on Update), if the distance from the UFO and the player is less or equal to a given radius (i.e. the player is inside or touching the radius). If it is inside the radius, we want to then trigger the transition to the chase state.
+|   | Consider the following                                                                                                                                                                                            |   |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+|   | We want to check (on Update), if the distance from the UFO and the player is less or equal to a given radius (i.e. the player is inside or touching the radius). If it is inside the radius, we want to then trigger the transition to the chase state. |   |
+|   |                                                                                                                                                                                                                   |   |
 
-```
 
 Think about this for a moment, then implement a solution -- as always you can find the solution further below. Here are some tips:
 
@@ -175,21 +176,22 @@ While it's fine to have our UFO simply be dormant while it isn't directly intera
 
 Make your UFO object a child of a new empty game object, it can be called something simple like "`UFO_Parent`". Once you've done that, make two new empty game objects, called `PatrolPointA` and `PatrolPointB` respectively. In your **Hierarchy** view, your UFO parent should look something like this:
 
-30_UFOParent
+<img src="PracResources\images\30_UFOParent.png">
 
 
-|   |                                                                                                                                                                                                                                 |   |
-| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+|   | Note                                                                                                                                                                                                                    |   |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
 |   | When making these empty game objects , Unity may set the Z-Position to a random number. Remember making new empty game objects, you typically want to go through and manually check their position, or set it to 0,0,0. |   |
-|   |                                                                                                                                                                                                                                 |   |
+|   |                                                                                                                                                                                                                         |   |
 
 For now, we'll keep things simple and set the position of the parent and the patrol points to `0,0,0`.
 
 In your UFO's state graph, rename `Dormant` to instead say `Patrol` - this way we won't have to change the transitions. Like before, consider what we're trying to implement:
 
-```text
-We need a way to remember if we are going to our first point or not. Either way, we need to select either patrol point A or B, and move towards them. Ideally, we should also be moving at our regular move speed
-```
+|   | Consider the following                                                                                                                                                                                            |   |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+|   | We need a way to remember if we are going to our first point or not. Either way, we need to select either patrol point A or B, and move towards them. Ideally, we should also be moving at our regular move speed |   |
+|   |                                                                                                                                                                                                                   |   |
 
 There are a few ways you could implement this logic, but we recommend the following:
 
@@ -207,7 +209,6 @@ Move your Patrol points to random positions in your game view (in a line from on
 To check your solution, here is an implementation using the trigger method mentioned above (I made sure to tick collisions between UFO and the PatrolPoint layer in the **Layer Collision Matrix**). Just note that the other method, using distance, would simply involve checking if the distance between the UFO and a PatrolPoint is within a small range (like 0.2).
 
 <img src="PracResources\images\31_PatrolSolution.png">
-
 
 <img src="PracResources\images\32_PatrolPointSolution.png">
 
@@ -249,6 +250,7 @@ Instead of using the `MoveTowards` node, look into using the `Lerp` node. To mak
 Restructure your Patrol state to be able to handle multiple patrol points - to successfully implement this, we do not want you to use a boolean to check which point to go to next.
 
 Some notes:
+
 * You may need to consider using an index value - google this term if you're not sure what it is.
 * While a List would be a sensibly way to do this, using a list is out of scope and not something we want you to do
 
